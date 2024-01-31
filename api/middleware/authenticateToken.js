@@ -10,16 +10,18 @@ const jwt = require("jsonwebtoken");
 function authenticateToken(req, res, next) {
     const token = req.header("Authorization");
 
-    if (!token) {
+    if (!token || !token.startsWith("Bearer ")) {
         return res.status(401).json({ message: "Aucun token reçu." });
     }
 
-    jwt.verify(token, process.env.KEY, (err, user) => {
-        if (err) {
-            return res.status(403).json({ message: "Token invalide." });
-        }
+    const split = token.split(" ")[1];
 
-        req.user = user;
+    jwt.verify(split, process.env.KEY, { algorithm: "HS256" }, (err, decoded) => {
+        if (err) {
+            console.log(err);
+            return res.status(403).json({ message: "Token invalide.", token: token });
+        }
+        req.userId = decoded.userId;
         next();
     });
 }

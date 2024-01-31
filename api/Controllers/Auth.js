@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
         );
 
         // Generate JWT token
-        const token = jwt.sign({ userId: newUser.rows[0].idUser }, process.env.KEY, { expiresIn: "8h" });
+        const token = jwt.sign({ userId: newUser.rows[0].iduser }, process.env.KEY, { expiresIn: "8h", algorithm: "HS256" });
         res.json({ token });
     } catch (error) {
         console.error(error.message);
@@ -42,11 +42,10 @@ router.post("/login", async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user.rows[0].id }, process.env.KEY, { expiresIn: "8h" });
-
+        const token = jwt.sign({ userId: user.rows[0].iduser }, process.env.KEY, { expiresIn: "8h", algorithm: "HS256" });
         res.json({ token });
     } catch (error) {
-        console.error(error.message);
+        console.error(error);
         res.status(500).send("Une erreur est survenue sur le serveur lors de l'authentification.");
     }
 });
