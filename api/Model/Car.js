@@ -1,4 +1,4 @@
-export class Car {
+class Car {
 /**
  * Creates a new instance of a Car.
  * @param {number} idCar - The unique ID of the car.
@@ -11,3 +11,5 @@ export class Car {
         this.carModel = carModel;
     }
 }
+
+exports.Car = Car;
