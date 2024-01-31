@@ -19,3 +19,5 @@ class Reservation {
         this.car = car;
     }
 }
+
+exports.Reservation = Reservation;
