@@ -15,9 +15,9 @@ const authenticateToken = require("../middleware/authenticateToken");
  * @param {number} idCarModel - The id of the car model passed in url.
  * @param {number} idCarEngine - The id of the car engine passed in url.
  */
-router.post("/cars", authenticateToken, async (req, res) => {
+router.post("/cars", authenticateToken, (req, res) => {
     const car = carFactory.getInstance().createCar(req.body);
-    await pool.query(
+    pool.query(
         "INSERT INTO car (idcar, carprice, colour, idcarmodel, idcarengine) VALUES ($1, $2, $3, $4, $5)",
         [car.idCar, car.carPrice, car.colour, car.idCarModel, car.idCarEngine],
         (error, result) => {
@@ -32,7 +32,7 @@ router.post("/cars", authenticateToken, async (req, res) => {
 /**
  * Returns the info on the car object with the given id.
  */
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM car WHERE idcar = $1", [req.params.id], (error, car) => {
         if (error) {
             throw error;
@@ -48,7 +48,7 @@ router.get("/:id", (req, res) => {
 /**
  * Returns the info on all car objects.
  */
-router.get("/", (req, res) => {
+router.get("/", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM car", (error, cars) => {
         if (error) {
             throw error;

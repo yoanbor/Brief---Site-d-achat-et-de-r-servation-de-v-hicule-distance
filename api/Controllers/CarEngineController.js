@@ -13,8 +13,8 @@ const authenticateToken = require("../middleware/authenticateToken");
  * @param {number} enginePrice - The price of the car engine.
  * @param {number} idCarModel - The unique ID of the car model that the engine belongs to.
  */
-router.post("/create", authenticateToken, async (req, res) => {
-    await pool.query(
+router.post("/create", authenticateToken, (req, res) => {
+    pool.query(
         "INSERT INTO carengine (nameengine, hp, fueltype, engineprice, idcarmodel) VALUES ($1, $2, $3, $4, $5)",
         [req.body.nameEngine, req.body.hp, req.body.fuelType, req.body.enginePrice, req.body.idCarModel],
         (error, result) => {
@@ -29,7 +29,7 @@ router.post("/create", authenticateToken, async (req, res) => {
 /**
  * Returns the info on the car engine with the given id.
  */
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM carengine WHERE idcarengine = $1", [req.params.id], (error, engine) => {
         if (error) {
             throw error;
@@ -45,7 +45,7 @@ router.get("/:id", (req, res) => {
 /**
  * Returns the info on all car engines.
  */
-router.get("/", (req, res) => {
+router.get("/", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM carengine", (error, engines) => {
         if (error) {
             throw error;
@@ -68,8 +68,8 @@ router.get("/", (req, res) => {
  * @param {number} idCarModel - The unique ID of the car model that the engine belongs to.
  * @param {number} id - The id of the car engine passed in url.
  */
-router.put("/update/:id", authenticateToken, async (req, res) => {
-    await pool.query(
+router.put("/update/:id", authenticateToken, (req, res) => {
+    pool.query(
         "UPDATE carengine SET nameengine = $1, hp = $2, fueltype = $3, engineprice = $4, idcarmodel = $5 WHERE idcarengine = $6",
         [req.body.nameEngine, req.body.hp, req.body.fuelType, req.body.enginePrice, req.body.idCarModel, req.params.id],
         (error, result) => {
@@ -85,8 +85,8 @@ router.put("/update/:id", authenticateToken, async (req, res) => {
  * Deletes the car engine with the given id.
  * @param {number} id - The id of the car engine passed in url.
  */
-router.delete("/delete/:id", authenticateToken, async (req, res) => {
-    await pool.query("DELETE FROM carengine WHERE idcarengine = $1", [req.params.id], (error, result) => {
+router.delete("/delete/:id", authenticateToken, (req, res) => {
+    pool.query("DELETE FROM carengine WHERE idcarengine = $1", [req.params.id], (error, result) => {
         if (error) {
             throw error;
         }

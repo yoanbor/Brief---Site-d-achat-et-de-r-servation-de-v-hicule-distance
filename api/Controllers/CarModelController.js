@@ -11,8 +11,8 @@ const authenticateToken = require("../middleware/authenticateToken.js");
  * @param {number} doors - The number of doors of the car model.
  * @param {number} modelPrice - The price of the car model.
  */
-router.post("/create", authenticateToken, async (req, res) => {
-    await pool.query(
+router.post("/create", authenticateToken, (req, res) => {
+    pool.query(
         "INSERT INTO carmodel (namemodel, doors, modelprice) VALUES ($1, $2, $3)",
         [req.body.nameModel, req.body.doors, req.body.modelPrice],
         (error, result) => {
@@ -27,7 +27,7 @@ router.post("/create", authenticateToken, async (req, res) => {
 /**
  * Returns the info on the car model with the given id.
  */
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM carmodel WHERE idcarmodel = $1", [req.params.id], (error, model) => {
         if (error) {
             throw error;
@@ -43,7 +43,7 @@ router.get("/:id", (req, res) => {
 /**
  * Returns the info on all car models.
  */
-router.get("/", (req, res) => {
+router.get("/", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM carmodel", (error, models) => {
         if (error) {
             throw error;

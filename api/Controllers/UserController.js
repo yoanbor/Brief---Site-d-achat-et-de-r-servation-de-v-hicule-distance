@@ -7,8 +7,8 @@ const authenticateToken = require("../middleware/authenticateToken");
 /**
  * Returns the info on the connected user.
  */
-router.get("/profile", authenticateToken, async (req, res) => {
-    const user = await pool.query("SELECT * FROM users WHERE iduser = $1", [req.connectedUser]);
+router.get("/profile", authenticateToken, (req, res) => {
+    const user = pool.query("SELECT * FROM users WHERE iduser = $1", [req.connectedUser]);
     if (user.rows.length === 0) {
         res.status(404).json({ message: "Utilisateur introuvable." });
     } else {
@@ -19,7 +19,7 @@ router.get("/profile", authenticateToken, async (req, res) => {
 /**
  * Returns the info on the user with the given id.
  */
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticateToken, (req, res) => {
     pool.query("SELECT * FROM users WHERE iduser = $1", [req.params.id], (error, user) => {
         if (error) {
             throw error;
@@ -31,8 +31,8 @@ router.get("/:id", (req, res) => {
 /**
  * Updates the info on the user with the given id.
  */
-router.put("/update", authenticateToken, async (req, res) => {
-    await pool.query(
+router.put("/update", authenticateToken, (req, res) => {
+    pool.query(
         "UPDATE users SET firstname = $1, lastname = $2, email = $3, userpassword = $4, addressline1 = $5, addressline2 = $6, city = $7, province = $8, zip = $9, country = $10 WHERE iduser = $11",
         [
             req.body.firstname,
@@ -59,8 +59,8 @@ router.put("/update", authenticateToken, async (req, res) => {
 /**
  * Deletes the user with the given id.
  */
-router.delete("/delete", authenticateToken, async (req, res) => {
-    await pool.query("DELETE FROM users WHERE iduser = $1", [req.connectedUser], (error, result) => {
+router.delete("/delete", authenticateToken, (req, res) => {
+    pool.query("DELETE FROM users WHERE iduser = $1", [req.connectedUser], (error, result) => {
         if (error) {
             throw error;
         }
@@ -71,8 +71,8 @@ router.delete("/delete", authenticateToken, async (req, res) => {
 /**
  *
  */
-router.get("/reservations", authenticateToken, async (req, res) => {
-    const reservations = await pool.query("SELECT * FROM reservations WHERE iduser = $1", [req.connectedUser]);
+router.get("/reservations", authenticateToken, (req, res) => {
+    const reservations = pool.query("SELECT * FROM reservations WHERE iduser = $1", [req.connectedUser]);
     if (reservations.rows.length === 0) {
         res.status(404).json({ message: "Aucune réservation disponible" });
     } else {
