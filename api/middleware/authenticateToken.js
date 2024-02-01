@@ -21,7 +21,7 @@ function authenticateToken(req, res, next) {
             console.log(err);
             return res.status(403).json({ message: "Token invalide.", token: token });
         }
-        req.userId = decoded.userId;
+        req.connectedUser = decoded.userId;
         next();
     });
 }
