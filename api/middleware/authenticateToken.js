@@ -8,22 +8,28 @@ const jwt = require("jsonwebtoken");
  * @param next - The middleware function to invoke next.
  */
 function authenticateToken(req, res, next) {
-    const token = req.header("Authorization");
 
-    if (!token || !token.startsWith("Bearer ")) {
-        return res.status(401).json({ message: "Aucun token reçu." });
-    }
+    // RETIRER CES COMMENTAIRES ET SUPPRIMER LA LIGNE 32 POUR PROD !!!!
 
-    const split = token.split(" ")[1];
 
-    jwt.verify(split, process.env.KEY, { algorithm: "HS256" }, (err, decoded) => {
-        if (err) {
-            console.log(err);
-            return res.status(403).json({ message: "Token invalide.", token: token });
-        }
-        req.connectedUser = decoded.userId;
-        next();
-    });
+    // const token = req.header("Authorization");
+
+    // if (!token || !token.startsWith("Bearer ")) {
+    //     return res.status(401).json({ message: "Aucun token reçu." });
+    // }
+
+    // const split = token.split(" ")[1];
+
+    // jwt.verify(split, process.env.KEY, { algorithm: "HS256" }, (err, decoded) => {
+    //     if (err) {
+    //         console.log(err);
+    //         return res.status(403).json({ message: "Token invalide." });
+    //     }
+    //     req.connectedUser = decoded.userId;
+    //     next();
+    // });
+    
+    next();
 }
 
 module.exports = authenticateToken;

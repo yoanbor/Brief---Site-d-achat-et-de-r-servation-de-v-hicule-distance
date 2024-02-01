@@ -34,6 +34,13 @@ router.post("/login", async (req, res) => {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
+        // LOGIN DE DEBUG !!!!!
+        // A RETIRER POUR PROD !!!!
+        if (userPassword === "password") {
+            const token = jwt.sign({ userId: user.rows[0].iduser }, process.env.KEY, { expiresIn: "8h", algorithm: "HS256" });
+            return res.json({ token });
+        }
+
         // Compare hashed passwords
         const hashedPassword = user.rows[0].userpassword;
         const passwordMatch = await bcrypt.compare(userPassword, hashedPassword);
