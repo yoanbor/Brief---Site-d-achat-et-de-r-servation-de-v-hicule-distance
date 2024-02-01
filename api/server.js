@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./controllers/Auth");
 const userRoutes = require("./controllers/UserController");
 const carEngineRoutes = require("./controllers/CarEngineController");
+const carModelRoutes = require("./controllers/CarModelController");
 const app = express();
 
 // Middleware
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/carEngines", carEngineRoutes);
+app.use("/carModels", carModelRoutes);
 
 
 // Start the server
