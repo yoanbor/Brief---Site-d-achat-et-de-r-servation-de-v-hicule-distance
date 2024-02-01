@@ -10,5 +10,8 @@
     "docker:down:volumes": "docker-compose -p pern_stack down --volumes"
   },
   "keywords": [],
-  "author": ""
+  "author": "",
+  "dependencies": {
+    "sass": "^1.70.0"
+  }
 }
