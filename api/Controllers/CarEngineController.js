@@ -11,11 +11,12 @@ const authenticateToken = require("../middleware/authenticateToken");
  * @param {number} hp - The hp of the car engine.
  * @param {string} fuelType - The fuel type of the car engine.
  * @param {number} enginePrice - The price of the car engine.
+ * @param {number} idCarModel - The unique ID of the car model that the engine belongs to.
  */
 router.post("/create", authenticateToken, async (req, res) => {
     await pool.query(
-        "INSERT INTO carengine (nameengine, hp, fueltype, engineprice) VALUES ($1, $2, $3, $4)",
-        [req.body.nameEngine, req.body.hp, req.body.fuelType, req.body.enginePrice],
+        "INSERT INTO carengine (nameengine, hp, fueltype, engineprice, idcarmodel) VALUES ($1, $2, $3, $4, $5)",
+        [req.body.nameEngine, req.body.hp, req.body.fuelType, req.body.enginePrice, req.body.idCarModel],
         (error, result) => {
             if (error) {
                 throw error;
@@ -64,12 +65,13 @@ router.get("/", (req, res) => {
  * @param {number} hp - The new hp of the car engine.
  * @param {string} fuelType - The new fuel type of the car engine.
  * @param {number} enginePrice - The new price of the car engine.
+ * @param {number} idCarModel - The unique ID of the car model that the engine belongs to.
  * @param {number} id - The id of the car engine passed in url.
  */
 router.put("/update/:id", authenticateToken, async (req, res) => {
     await pool.query(
-        "UPDATE carengine SET nameengine = $1, hp = $2, fueltype = $3, engineprice = $4 WHERE idcarengine = $5",
-        [req.body.nameEngine, req.body.hp, req.body.fuelType, req.body.enginePrice, req.params.id],
+        "UPDATE carengine SET nameengine = $1, hp = $2, fueltype = $3, engineprice = $4, idcarmodel = $5 WHERE idcarengine = $6",
+        [req.body.nameEngine, req.body.hp, req.body.fuelType, req.body.enginePrice, req.body.idCarModel, req.params.id],
         (error, result) => {
             if (error) {
                 throw error;

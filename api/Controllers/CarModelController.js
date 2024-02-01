@@ -8,15 +8,13 @@ const authenticateToken = require("../middleware/authenticateToken.js");
  * Creates a new car model.
  * Awaits a JSON object containing following params :
  * @param {string} nameModel - The name of the car model.
- * @param {string} colour - The colour of the car model.
  * @param {number} doors - The number of doors of the car model.
  * @param {number} modelPrice - The price of the car model.
- * @param {number} idCarEngine - The id of the car engine.
  */
 router.post("/create", authenticateToken, async (req, res) => {
     await pool.query(
-        "INSERT INTO carmodel (namemodel, colour, doors, modelprice, idcarengine) VALUES ($1, $2, $3, $4, $5)",
-        [req.body.nameModel, req.body.colour, req.body.doors, req.body.modelPrice, req.body.idCarEngine],
+        "INSERT INTO carmodel (namemodel, doors, modelprice) VALUES ($1, $2, $3)",
+        [req.body.nameModel, req.body.doors, req.body.modelPrice],
         (error, result) => {
             if (error) {
                 throw error;
@@ -62,16 +60,14 @@ router.get("/", (req, res) => {
  * Updates the info on the car model with the given id.
  * Awaits a JSON object containing following params :
  * @param {string} nameModel - The new name of the car model.
- * @param {string} colour - The new colour of the car model.
  * @param {number} doors - The new number of doors of the car model.
  * @param {number} modelPrice - The new price of the car model.
- * @param {number} carEngineId - The new id of the car engine.
  * @param {number} id - The id of the car model passed in url.
  */
 router.put("/update/:id", authenticateToken, async (req, res) => {
     await pool.query(
-        "UPDATE carmodel SET namemodel = $1, colour = $2, doors = $3, modelprice = $4, idcarengine = $5 WHERE idcarmodel = $6",
-        [req.body.nameModel, req.body.colour, req.body.doors, req.body.modelPrice, req.body.idCarEngine, req.params.id],
+        "UPDATE carmodel SET namemodel = $1, doors = $2, modelprice = $3 WHERE idcarmodel = $4",
+        [req.body.nameModel, req.body.doors, req.body.modelPrice, req.params.id],
         (error, result) => {
             if (error) {
                 throw error;

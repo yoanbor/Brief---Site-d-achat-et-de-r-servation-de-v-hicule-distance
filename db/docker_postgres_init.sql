@@ -1,3 +1,14 @@
+-- Création de la table "carModel" 
+CREATE TABLE IF NOT EXISTS
+    carModel (
+        idCarModel SERIAL PRIMARY KEY,
+        nameModel VARCHAR(100),
+        doors INT NOT NULL,
+        modelPrice INT NOT NULL
+    );
+
+----------------------------------------------------------------------------------------------------------- 
+
 -- Création de la table "carEngine"
 CREATE TABLE IF NOT EXISTS 
     carEngine (
@@ -5,21 +16,9 @@ CREATE TABLE IF NOT EXISTS
         nameEngine VARCHAR(100) NOT NULL,
         hp INT NOT NULL,
         fuelType VARCHAR(20) NOT NULL,
-        enginePrice INT NOT NULL
+        enginePrice INT NOT NULL,
+        idCarModel INT REFERENCES carModel (idCarModel)
     );
-
-
------------------------------------------------------------------------------------------------------------ 
-
--- Création de la table "carModel" 
-CREATE TABLE IF NOT EXISTS carModel (
-    idCarModel SERIAL PRIMARY KEY,
-    nameModel VARCHAR(100),
-    colour VARCHAR(20),
-    doors INT NOT NULL,
-    modelPrice INT NOT NULL,
-    idCarEngine INT REFERENCES carEngine (idCarEngine)
-);
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -28,7 +27,9 @@ CREATE TABLE IF NOT EXISTS
     car (
         idCar SERIAL PRIMARY KEY, 
         carPrice INT NOT NULL,
-        idCarModel INT REFERENCES carModel (idCarModel)
+        colour VARCHAR(20),
+        idCarModel INT REFERENCES carModel (idCarModel),
+        idCarEngine INT REFERENCES carEngine (idCarEngine)
     );
 
 ----------------------------------------------------------------------------------------------------------- 
