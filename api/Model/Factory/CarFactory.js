@@ -18,27 +18,12 @@ class CarFactory {
 
     /**
      * Creates a new Car object based on the given JSON data.
-     * @param {Object} json - the JSON data used to create the Car object
+     * @param {Object} json - the JSON data used to create the Car containing : -modelPrice -enginePrice -colour -idCarModel -idCarEngine
      * @return {Car} the newly created Car object
      */
     createCar(json) {
-        const engineData = json.CarEngine;
-        const engine = new CarEngine(
-            engineData.idCarEngine,
-            engineData.name,
-            engineData.hp,
-            engineData.fuelType,
-            engineData.enginePrice
-        );
-        const modelData = json.CarModel;
-        const model = new CarModel(
-            modelData.idCarModel,
-            modelData.name,
-            modelData.colour,
-            modelData.doors,
-            modelData.modelPrice,
-            engine
-        );
-        return new Car(null, model, model.modelPrice + engine.enginePrice);
+        return new Car(null, json.modelPrice + json.enginePrice, json.colour, json.idCarModel, json.idCarEngine);
     }
 }
+
+module.exports = CarFactory;

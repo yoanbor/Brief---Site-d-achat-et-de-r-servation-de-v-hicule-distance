@@ -5,6 +5,7 @@ const authRoutes = require("./controllers/Auth");
 const userRoutes = require("./controllers/UserController");
 const carEngineRoutes = require("./controllers/CarEngineController");
 const carModelRoutes = require("./controllers/CarModelController");
+const carRoutes = require("./controllers/CarController");
 const app = express();
 
 // Middleware
@@ -15,6 +16,7 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/carEngines", carEngineRoutes);
 app.use("/carModels", carModelRoutes);
+app.use("/cars", carRoutes);
 
 
 // Start the server
