@@ -33,16 +33,16 @@ CREATE TABLE IF NOT EXISTS
 
 ----------------------------------------------------------------------------------------------------------- 
 
--- Création de la table "user" 
+-- Création de la table users 
 CREATE TABLE IF NOT EXISTS 
-    "user" (
+    users (
         idUser SERIAL PRIMARY KEY,
         firstname VARCHAR(50) NOT NULL,
         lastname VARCHAR(50) NOT NULL,
-        email VARCHAR(50) NOT NULL,
-        userPassword VARCHAR(50) NOT NULL,
-        adressLine1 VARCHAR(100),
-        adressLine2 VARCHAR(100), 
+        email VARCHAR(50) UNIQUE NOT NULL,
+        userPassword VARCHAR(255) NOT NULL,
+        addressLine1 VARCHAR(100),
+        addressLine2 VARCHAR(100), 
         city VARCHAR(50),
         province VARCHAR(50),
         zip INT,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS
         isPaid boolean NOT NULL,
         deliveryDate DATE NOT NULL,
         reservationState VARCHAR(20) NOT NULL,
-      	idUser INT REFERENCES "user" (idUser),
+      	idUser INT REFERENCES users (idUser),
         idCar INT REFERENCES car (idCar)
     );
 
@@ -80,27 +80,27 @@ CREATE ROLE "Application" WITH PASSWORD 'clientPassword';
 GRANT SELECT ON TABLE carEngine TO "Application";
 GRANT SELECT ON TABLE carModel TO "Application";
 GRANT SELECT ON TABLE car TO "Application";
-GRANT SELECT ON TABLE "user" TO "Application";
+GRANT SELECT ON TABLE users TO "Application";
 GRANT SELECT ON TABLE reservation TO "Application";
 GRANT SELECT ON TABLE notification TO "Application";
 
 GRANT INSERT ON TABLE carEngine TO "Application";
 GRANT INSERT ON TABLE carModel TO "Application";
 GRANT INSERT ON TABLE car TO "Application";
-GRANT INSERT ON TABLE "user" TO "Application";
+GRANT INSERT ON TABLE users TO "Application";
 GRANT INSERT ON TABLE reservation TO "Application";
 GRANT INSERT ON TABLE notification TO "Application";
 
 GRANT UPDATE ON TABLE carEngine TO "Application";
 GRANT UPDATE ON TABLE carModel TO "Application";
 GRANT UPDATE ON TABLE car TO "Application";
-GRANT UPDATE ON TABLE "user" TO "Application";
+GRANT UPDATE ON TABLE users TO "Application";
 GRANT UPDATE ON TABLE reservation TO "Application";
 GRANT UPDATE ON TABLE notification TO "Application";
 
 GRANT DELETE ON TABLE carEngine TO "Application";
 GRANT DELETE ON TABLE carModel TO "Application";
 GRANT DELETE ON TABLE car TO "Application";
-GRANT DELETE ON TABLE "user" TO "Application";
+GRANT DELETE ON TABLE users TO "Application";
 GRANT DELETE ON TABLE reservation TO "Application";
 GRANT DELETE ON TABLE notification TO "Application";
