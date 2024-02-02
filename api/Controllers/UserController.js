@@ -29,6 +29,19 @@ router.get("/:id", authenticateToken, (req, res) => {
 });
 
 /**
+ * Returns the info on all users.
+ */
+
+router.get("/", authenticateToken, (req, res) => {
+    pool.query("SELECT * FROM users", (error, users) => {
+        if (error) {
+            throw error;
+        }
+        res.status(200).json(users.rows);
+    });
+});
+
+/**
  * Updates the info on the user with the given id.
  */
 router.put("/update", authenticateToken, (req, res) => {
