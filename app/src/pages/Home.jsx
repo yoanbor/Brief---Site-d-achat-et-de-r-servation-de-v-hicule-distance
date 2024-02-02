@@ -1,9 +1,12 @@
 import React from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
 
 const Home = () => {
   return (
-    <div>
-      <h1>ACCUEIL</h1>
+    <div className="home">
+      <Header />
+      <Footer />
     </div>
   );
 };

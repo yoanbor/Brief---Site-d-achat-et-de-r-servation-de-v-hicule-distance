@@ -1,0 +1,32 @@
+$red: #e1000f;
+$blue: #000091;
+$black: #09090b;
+$white: #ffffff;
+
+@mixin verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $black;
+  color: $white;
+  // @include verticalCenter;
+}
+li {
+  list-style: none;
+  cursor: pointer;
+}
+
+a,
+a:visited {
+  color: $white;
+  text-decoration: none;
+}

@@ -1,0 +1,13 @@
+footer {
+  margin-left: 40px;
+  ul {
+    display: flex;
+    a {
+      li {
+        display: flex;
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
