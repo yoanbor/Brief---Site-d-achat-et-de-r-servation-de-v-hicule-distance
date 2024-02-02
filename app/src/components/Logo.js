@@ -8,7 +8,7 @@ const Logo = () => {
         <NavLink to="/">
           <li>
             <img
-              src="../assets/icons/Logo Broumbroum.svg"
+              src="./assets/icons/Logo Broumbroum.svg"
               alt="Logo BroumBroum"
             />
           </li>

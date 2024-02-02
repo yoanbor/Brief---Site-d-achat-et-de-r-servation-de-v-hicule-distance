@@ -1,0 +1,35 @@
+header {
+  ul {
+    margin: 3rem;
+    max-width: 2000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    li {
+      .logo {
+        ul {
+          a {
+            display: flex;
+
+            li {
+            }
+          }
+
+          .navigation {
+            ul {
+              a {
+                li {
+                }
+              }
+            }
+          }
+          .logocompte {
+            img {
+            }
+          }
+        }
+      }
+    }
+  }
+}
