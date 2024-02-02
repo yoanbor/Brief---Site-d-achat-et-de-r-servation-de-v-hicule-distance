@@ -3,7 +3,9 @@ import React from "react";
 const LogoCompte = () => {
   return (
     <div className="logocompte">
-      <img src="./assets/img/avatar.png" alt="Avatar Mon compte" />
+      <a href="/moncompte">
+        <img src="./assets/icons/UserAvatarIcon.svg" alt="Avatar Mon compte" />
+      </a>
     </div>
   );
 };
