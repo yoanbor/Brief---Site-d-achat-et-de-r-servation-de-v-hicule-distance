@@ -1,22 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navigation = () => {
+const Footer = () => {
   return (
-    <div className="navigation">
+    <footer>
       <ul>
         <NavLink to="/">
-          <li>l'associale</li>
+          <li>BROUMBROUM © 2024</li>
+        </NavLink>{" "}
+        <NavLink to="/">
+          <li>Mentions légales</li>
         </NavLink>
         <NavLink to="/">
-          <li>la solide air</li>
-        </NavLink>
-        <NavLink to="/">
-          <li>la vioque</li>
+          <li>À propos</li>
         </NavLink>
       </ul>
-    </div>
+    </footer>
   );
 };
 
-export default Navigation;
+export default Footer;
