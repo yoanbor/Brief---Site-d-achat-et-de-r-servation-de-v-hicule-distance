@@ -6,6 +6,7 @@ const userRoutes = require("./controllers/UserController");
 const carEngineRoutes = require("./controllers/CarEngineController");
 const carModelRoutes = require("./controllers/CarModelController");
 const carRoutes = require("./controllers/CarController");
+const reservationRoutes = require("./controllers/ReservationController");
 const app = express();
 
 // Middleware
@@ -17,7 +18,7 @@ app.use("/users", userRoutes);
 app.use("/carEngines", carEngineRoutes);
 app.use("/carModels", carModelRoutes);
 app.use("/cars", carRoutes);
-
+app.use("/reservations", reservationRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
