@@ -15,7 +15,7 @@ const authenticateToken = require("../middleware/authenticateToken");
  * @param {number} idCarModel - The id of the car model passed in url.
  * @param {number} idCarEngine - The id of the car engine passed in url.
  */
-router.post("/cars", authenticateToken, (req, res) => {
+router.post("/create", authenticateToken, (req, res) => {
     const car = carFactory.getInstance().createCar(req.body);
     pool.query(
         "INSERT INTO car (idcar, carprice, colour, idcarmodel, idcarengine) VALUES ($1, $2, $3, $4, $5)",
@@ -24,7 +24,7 @@ router.post("/cars", authenticateToken, (req, res) => {
             if (error) {
                 throw error;
             }
-            res.status(201).json(result);
+            res.status(201).json(result);   
         }
     );
 });
