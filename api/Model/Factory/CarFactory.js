@@ -9,7 +9,7 @@ class CarFactory {
      * Returns the single instance of the CarFactory class
      * @return {CarFactory} the instance of the CarFactory class
      */
-    static getInstance() {
+    getInstance() {
         if (!this.instance) {
             this.instance = new CarFactory();
         }
