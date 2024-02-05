@@ -1,13 +1,13 @@
 require("dotenv").config({ path: "./" + ".env" });
 const express = require("express");
 const bodyParser = require("body-parser");
-const authRoutes = require("./controllers/Auth");
-const userRoutes = require("./controllers/UserController");
-const carEngineRoutes = require("./controllers/CarEngineController");
-const carModelRoutes = require("./controllers/CarModelController");
-const carRoutes = require("./controllers/CarController");
-const reservationRoutes = require("./controllers/ReservationController");
-const notificationRoutes = require("./controllers/NotificationController");
+const authRoutes = require("./Controllers/Auth");
+const userRoutes = require("./Controllers/UserController");
+const carEngineRoutes = require("./Controllers/CarEngineController");
+const carModelRoutes = require("./Controllers/CarModelController");
+const carRoutes = require("./Controllers/CarController");
+const reservationRoutes = require("./Controllers/ReservationController");
+const notificationRoutes = require("./Controllers/NotificationController");
 const app = express();
 
 // Middleware

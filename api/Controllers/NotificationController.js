@@ -2,7 +2,7 @@ require("dotenv").config({ path: "./" + ".env" });
 const express = require("express");
 const router = express.Router();
 const { pool } = require("../config/db.config.js");
-const authenticateToken = require("../middleware/authenticateToken");
+const authenticateToken = require("../Middleware/authenticateToken");
 
 /**
  * Creates a new notification object

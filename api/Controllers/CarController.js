@@ -1,9 +1,9 @@
-const carFactory = require("../model/factory/CarFactory");
+const carFactory = require("../Model/Factory/CarFactory");
 require("dotenv").config({ path: "./" + ".env" });
 const express = require("express");
 const router = express.Router();
 const { pool } = require("../config/db.config.js");
-const authenticateToken = require("../middleware/authenticateToken");
+const authenticateToken = require("../Middleware/authenticateToken");
 
 /**
  * Creates a new car object.
