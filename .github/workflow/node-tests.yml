@@ -1,0 +1,29 @@
+name: Node.js tests
+
+on:
+  push:
+    branches:
+      - tests
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Use Node.js v18
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Change to api directory
+      run: cd api/
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
