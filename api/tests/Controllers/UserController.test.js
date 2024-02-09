@@ -117,7 +117,6 @@ test("/delete throws error", async () => {
 test("/reservations", async () => {
     pool.query = jest.fn().mockReturnValueOnce({ rows: [{idreservation: 1}] });
     const res = await request(app).get("/reservations");
-    console.log(res);
     expect(res.status).toBe(200);
     expect(pool.query).toHaveBeenCalledTimes(1);
 });
@@ -138,5 +137,3 @@ test("/reservations throws error", async () => {
     expect(res.body.message).toBe("Erreur lors de la récupération des réservations de l'utilisateur.");
     expect(pool.query).toHaveBeenCalledTimes(1);
 });
-
-// This comment is a test of the github action script
