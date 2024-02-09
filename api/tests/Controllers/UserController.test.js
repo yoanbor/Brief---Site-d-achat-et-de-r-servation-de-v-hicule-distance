@@ -138,3 +138,5 @@ test("/reservations throws error", async () => {
     expect(res.body.message).toBe("Erreur lors de la récupération des réservations de l'utilisateur.");
     expect(pool.query).toHaveBeenCalledTimes(1);
 });
+
+// This comment is a test of the github action script
